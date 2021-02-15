@@ -1,0 +1,387 @@
+[
+	{
+		"id": "knowtypes",
+		"children": [],
+		"ignites": [
+			"aesthetic",
+			"anecdotal",
+			"belief",
+			"confusion",
+			"creative",
+			"experience",
+			"experiment",
+			"expert fact",
+			"gut feel",
+			"idea",
+			"learned",
+			"life",
+			"nous",
+			"observation",
+			"opinion",
+			"philosophical",
+			"question",
+			"research",
+			"rumor",
+			"sci-fi",
+			"scientific",
+			"story",
+			"taste",
+			"taught",
+			"thought",
+			"trend",
+			"wisdom",
+			"written"
+		]
+	},
+
+	{
+		"id": "human",
+		"ignites": [],
+		"children": [
+			{
+				"id": "human context",
+				"children": [],
+				"ignites": [
+					"belief",
+					"culture",
+					"demographic",
+					"emotion",
+					"fad",
+					"feeling",
+					"generational",
+					"identity",
+					"ideology",
+					"interest",
+					"life stage",
+					"lifestyle",
+					"mood",
+					"nature",
+					"nurture",
+					"personality",
+					"perception",
+					"psychographics",
+					"senses",
+					"taste",
+					"tradition",
+					"values",
+					"worldview"
+				]
+			},
+			{
+				"id": "human systems",
+				"children": [],
+				"ignites": [
+					"economics",
+					"education",
+					"environment",
+					"politics",
+					"religion",
+					"technology",
+					"society"
+				]
+			}
+		]
+	},
+	{
+		"id": "relevance",
+		"children": [
+			{
+				"id": "relevance to humanity",
+				"children": [],
+				"ignites": [
+					"essence of humanity",
+					"helps us understand",
+					"life as it happens",
+					"not relevant",
+					"redefines humanity"
+				]
+			},
+			{
+				"id": "relevance to me",
+				"children": [],
+				"ignites": [
+					"all the time",
+					"for work",
+					"in leisure",
+					"intellectually",
+					"life in general",
+					"rarely",
+					"sometimes"
+				]
+			},
+			{
+				"id": "relevance to some",
+				"children": [],
+				"ignites": ["community", "family", "generation", "group", "individual", "niche", "segment"]
+			}
+		]
+	},
+	{
+		"id": "agreement",
+		"children": [],
+		"ignites": [
+			"strongly agree",
+			"inclined to agree",
+			"not sure",
+			"inclined to disagree",
+			"strongly disagree"
+		]
+	},
+	{
+		"id": "writing style",
+		"children": [],
+		"ignites": ["academic", "colloquial", "difficult", "flows", "jargon", "slang", "succinct"]
+	},
+	{
+		"id": "gutfeel",
+		"children": [],
+		"ignites": [
+			"wow : amazing",
+			"aww : beautiful",
+			"hah : funny",
+			"ugh : horrible",
+			"meh : indifferent",
+			"aha : insightful",
+			"hmm : intriguing",
+			"whoa : questionable",
+			"yuk : revolting",
+			"oh : surprising",
+			"huh : unclear"
+		]
+	},
+	{
+		"id": "time",
+		"ignites": [
+			"about past",
+			"about future",
+			"here and now",
+			"repeats in cycles",
+			"same across time"
+		],
+		"children": [
+			{
+				"id": "future",
+				"children": [],
+				"ignites": [
+					"actions for it",
+					"black swan",
+					"change",
+					"desire",
+					"downward trend",
+					"expectation",
+					"dream",
+					"facilitator",
+					"fear",
+					"fundamental for",
+					"hope",
+					"idea",
+					"intention",
+					"stagnant",
+					"need",
+					"unchanging",
+					"upward trend",
+					"want"
+				]
+			},
+			{
+				"id": "enduring",
+				"children": [],
+				"ignites": [
+					"cliche",
+					"common sense",
+					"joke",
+					"myth",
+					"paradox",
+					"saying",
+					"stereotype",
+					"wisdom of elders"
+				]
+			},
+			{
+				"id": "change",
+				"children": [],
+				"ignites": [
+					"shifting society",
+					"emergent behavior",
+					"disruptive technology",
+					"obstacles to",
+					"facilitators of"
+				]
+			}
+		]
+	},
+	{
+		"id": "background",
+		"children": [],
+		"ignites": [
+			"anthropology",
+			"art",
+			"biology",
+			"culture",
+			"curiosity",
+			"design",
+			"ethnography",
+			"foresight",
+			"history",
+			"humor",
+			"language",
+			"product",
+			"linguistics",
+			"marketing",
+			"philosophy",
+			"pop culture",
+			"psychology",
+			"research>",
+			"science",
+			"sociology",
+			"strategy",
+			"study",
+			"technology"
+		]
+	},
+	{
+		"id": "interests",
+		"children": [],
+		"ignites": [
+			"behavior",
+			"beliefs",
+			"community",
+			"critical thinking",
+			"cultures",
+			"desires",
+			"differences",
+			"emotions",
+			"expression",
+			"feelings",
+			"future",
+			"cycles",
+			"identity",
+			"institutions",
+			"linguistics",
+			"mind/brain",
+			"needs",
+			"physiology",
+			"past",
+			"patterns",
+			"personality",
+			"present",
+			"relationships",
+			"religions",
+			"senses",
+			"sexuality",
+			"similarities",
+			"societies",
+			"spirituality",
+			"states",
+			"stories",
+			"tastes",
+			"technology",
+			"traditions",
+			"uniqueness",
+			"values",
+			"wants",
+			"wisdom"
+		]
+	},
+	{
+		"id": "feeling",
+		"children": [],
+		"ignites": [
+			"affection",
+			"anger",
+			"angst",
+			"anguish",
+			"annoyance",
+			"anxiety",
+			"apathy",
+			"arousal",
+			"awe",
+			"boredom",
+			"confidence",
+			"contempt",
+			"contentment",
+			"courage",
+			"curiosity",
+			"depression",
+			"desire",
+			"despair",
+			"disappointment",
+			"disgust",
+			"distrust",
+			"dread",
+			"ecstasy",
+			"embarrassment",
+			"envy",
+			"euphoria",
+			"excitement",
+			"fear",
+			"frustration",
+			"gratitude",
+			"grief",
+			"guilt",
+			"happiness",
+			"hatred",
+			"hope",
+			"horror",
+			"hostility",
+			"hurt",
+			"hysteria",
+			"indifference",
+			"interest",
+			"jealousy",
+			"joy",
+			"loathing",
+			"loneliness",
+			"love",
+			"lust",
+			"outrage",
+			"panic",
+			"passion",
+			"pity",
+			"pleasure",
+			"pride",
+			"rage",
+			"regret",
+			"relief",
+			"remorse",
+			"sadness",
+			"satisfaction",
+			"self-confidence",
+			"shame",
+			"shock",
+			"shyness",
+			"sorrow",
+			"suffering",
+			"surprise",
+			"terror",
+			"trust",
+			"wonder",
+			"worry",
+			"zeal",
+			"zest"
+		]
+	},
+	{
+		"id": "humor",
+		"children": [],
+		"ignites": [
+			"amusing",
+			"comic",
+			"corny",
+			"foible",
+			"funny",
+			"ironic",
+			"laughing",
+			"not funny",
+			"quirky",
+			"sarcastic",
+			"sardonic",
+			"satiric",
+			"silly",
+			"situational",
+			"touching",
+			"witty",
+			"wry"
+		]
+	}
+]

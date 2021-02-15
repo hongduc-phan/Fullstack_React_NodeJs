@@ -1,0 +1,113 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@urql/exchange-graphcache": "^3.1.7",
+    "@urql/exchange-multipart-fetch": "^0.1.8",
+    "date-fns": "^2.16.1",
+    "graphql": "^15.4.0",
+    "graphql-tag": "^2.11.0",
+    "immer": "^7.0.14",
+    "jwt-decode": "^3.0.0",
+    "lodash": "^4.17.20",
+    "material-ui-chip-input": "^2.0.0-beta.2",
+    "ramda": "^0.27.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "4.0.0",
+    "react-swipeable-views": "^0.13.9",
+    "react-swipeable-views-utils": "^0.14.0-alpha.0",
+    "react-use": "^15.3.4",
+    "typescript": "~4.0.5",
+    "urql": "^1.10.0",
+    "use-immer": "^0.4.1",
+    "vest": "^2.2.3"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@graphql-codegen/cli": "^1.19.0",
+    "@graphql-codegen/introspection": "1.18.0",
+    "@graphql-codegen/typescript": "^1.17.11",
+    "@graphql-codegen/typescript-operations": "^1.17.8",
+    "@types/jest": "^26.0.15",
+    "@types/jwt-decode": "^2.2.1",
+    "@types/lodash": "^4.14.163",
+    "@types/node": "^14.14.6",
+    "@types/ramda": "^0.27.31",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-router-config": "^5.0.1",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/react-swipeable-views": "^0.13.0",
+    "@types/react-swipeable-views-utils": "^0.13.2",
+    "babel-plugin-import": "^1.13.1",
+    "customize-cra": "^1.0.0",
+    "eslint-plugin-jest-dom": "^3.2.4",
+    "eslint-plugin-lodash-fp": "^2.2.0-a1",
+    "eslint-plugin-testing-library": "^3.9.2",
+    "jest-junit": "^12.0.0",
+    "react-app-rewired": "^2.1.5",
+    "source-map-explorer": "^2.5.0"
+  },
+  "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "cobertura"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./coverage",
+          "outputName": "coverage.xml"
+        }
+      ]
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/config-overrides",
+      "<rootDir>/src/serviceWorker",
+      "<rootDir>/src/types"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:testing-library/react",
+      "plugin:jest-dom/recommended",
+      "plugin:lodash-fp/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5005"
+}

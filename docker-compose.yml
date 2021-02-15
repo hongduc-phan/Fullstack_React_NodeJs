@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - 7474:7474
+      - 7473:7473
+      - 7687:7687
+    volumes:
+      - $HOME/neo4j/datad:/data
+    environment:
+      - NEO4J_AUTH=neo4j/hunomepwd1
+
+  app:
+    build: .
+    ports:
+      - 5005:5005
+    volumes:
+      - $HOME/image_store:/image_store
+      - $HOME/logs_store:/logs_store
+    environment:
+      - AES_256_CBC=
+      - AES_32KEY=
+      - APP_PASS=
+      - CLIENT=
+      - DB_HOST=localhost
+      - DB_NAME=hunomedb1
+      - DB_PASSWORD=hpassword1
+      - DB_PORT=27017
+      - DB_USERNAME=huser1
+      - DB_ADDITIONAL_PARAMS=
+      - EMAIL=
+      - NODE_ENV=development
+      - SECRET_OR_KEY=1$uy_^&66#
+      - SERVER_PORT=5005
+      - SESS_LIFETIME=60
+      - SESS_NAME=default_mongo
+      - SESS_SECRET=default_mongo_secret
+      - NEO4J_URI=bolt://neo4j 
+      - NEO4J_USER=neo4j 
+      - NEO4J_PWD=hunomepwd1
+      - IMAGE_STORE_LOCATION=/image_store
+      - LOGS_STORE_LOCATION=/logs_store
+      - SENDGRID_API_KEY=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
+      - SENDGRID_FROM_EMAIL=development@hunome.com
+      - BLOB_STORAGE_ACCOUNT_NAME=hunomeblobcdnstore
+      - BLOB_STORAGE_ACCOUNT_KEY=7/2i9Kvq1Ujawrkio1b36r/5CimE6jFH9iCbnu1r3IUlM9M8nGP0sP8orPMCJhCYUcq7rChyF0yvlqxYJ8y9Tw==
+      - IMAGES_CDN_ENDPOINT=https://cdn-endpoint-2020.azureedge.net
+      - RESET_PASSWORD_HOST=http://localhost:5005

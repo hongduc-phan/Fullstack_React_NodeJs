@@ -1,0 +1,8 @@
+export const CHILD_OF = 'CHILD_OF'
+export const OWNED_BY = 'OWNED_BY'
+export const BELONGS_TO = 'BELONGS_TO'
+export const IGNITE = 'IGNITE'
+export const ASSIGNED_BY = 'ASSIGNED_BY'
+export const INVITED = 'INVITED'
+export const EMAIL_VERIFICATION = 'EMAIL_VERIFICATION'
+export const RESET_PASSWORD_REQUESTED = 'RESET_PASSWORD_REQUESTED'

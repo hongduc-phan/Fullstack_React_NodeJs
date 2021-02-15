@@ -1,0 +1,247 @@
+directive @public on FIELD_DEFINITION
+directive @private on FIELD_DEFINITION
+
+type Query {
+	sparkmap(id: ID!): Sparkmap @private
+	draftsparkmap(id: ID!): Sparkmap @private
+	sparkmaps: [Sparkmap!] @private
+	spark(id: ID!): Spark @private
+	sparks(sparkmapId: ID): [Spark!] @private
+	currentMember: Member @private
+	images: [Image] @private
+	privateProfile: MemberPrivateProfile! @private
+	publicProfile(memberId: ID!): MemberPublicProfile!
+	ignites: [IgniteGroup!] @private
+	getInvitation: Invitation @private
+	getBestFitSparks(sparkId: ID!): BestFitSparksResult!  @private
+	getBestFitForProfile: BestFitSparksResult!  @private
+	search(query: SearchQueryInput!): SearchResult!  @private
+}
+
+type Mutation {
+	createSpark(input: CreateSparkInput!): Spark! @private
+	createSparkon(input: CreateSparkOnInput!): Spark! @private
+	deleteSpark(sparkId: ID!): Spark @private
+	updateSpark(spark: SparkUpdateInput!): Spark @private
+	publish(sparkId: ID!): Spark @private
+	register(input: RegisterMemberInput!): Auth @public
+	login(email: String!, password: String!): Auth @public
+	logout: Boolean @private
+	changePassword(currentPassword: String!, newPassword: String!): Boolean @private
+	changeEmail(newEmail: String!): ChangeEmailResult @private
+	singleUpload(file: Upload!): Image! @private
+	updateMemberProfile(profile: MemberProfileUpdateInput!): MemberPrivateProfile! @private
+	assignIgnites(input: AssignIgnitesInput!): [SparkIgnite!] @private
+	createEmailVerificationCode(email: String!): Boolean
+	verifyCode(code: String!, email: String!): Boolean
+	resetPassword(email: String!): Boolean
+	checkResetID(resetId: String!): Boolean
+	setNewPassword(resetId: String!, password: String!): Boolean
+	checkMembername(membername: String!, email: String!): NameCheckResult!
+}
+
+input SearchQueryInput {
+	keywords: [String!]!
+	igniteIds: [String!]!
+}
+
+type SearchResult {
+	mainOrbit:Orbit!
+	otherResults: [SparkMapSummary!]
+}
+
+type SparkMapSummary {
+	sparkmapId: String!
+	sparksCount: Int!
+	ignitesCount: Int!
+	participantsCount: Int!
+	topParticipants: [MemberPublicProfile!]
+	topIgnites: [String!]
+	initialSparkTitle: String!
+	initialSparkImgUrl: String!
+	initiatedBy: MemberPublicProfile!
+	initiatedDate: Date!
+}
+
+type Orbit {
+	sparks: [Spark!]!
+}
+
+type BestFitSparksResult {
+	sparks: [Spark!]
+}
+
+type NameCheckResult {
+	membernameExists: Boolean!
+	emailExists: Boolean!
+}
+
+input RegisterMemberInput {
+	membername: String!
+	email: String!
+	password: String!
+	firstname: String!
+	lastname: String!
+	birthdate: Date!
+}
+
+input AssignIgnitesInput {
+	sparkId: String!
+	ignitesIds: [String!]!
+}
+
+input CreateSparkInput {
+	title: String!
+	description: String!
+	body: String!
+	backgroundImage: String
+	ignites: [String!]
+}
+
+input CreateSparkOnInput {
+	title: String!
+	description: String!
+	body: String!
+	parentSparkId: ID!
+	backgroundImage: String
+	ignites: [String!]
+}
+
+type ChangeEmailResult {
+	success: Boolean!
+}
+
+type Sparkmap {
+	id: ID!
+	member: Member!
+}
+
+type Spark {
+	id: ID!
+	title: String!
+	description: String!
+	body: String!
+	member: Member!
+	memberId: String!
+	parent: Spark
+	parentSparkId: String!
+	sparkmap: Sparkmap!
+	sparkmapId: String!
+	isDraft: Boolean
+	backgroundImage: String
+	children: [Spark!]
+	ignites: [SparkIgnite!]
+	createdDatetime: DateTime
+	updatedDatetime: DateTime
+	topParticipants: [MemberPublicProfile!]
+	topIgnites: [Ignite!]
+}
+
+input SparkUpdateInput {
+	id: ID!
+	title: String
+	description: String
+	body: String
+	backgroundImage: String
+	ignites: [String!]
+}
+
+type Auth {
+	token: String!
+}
+
+type Member {
+	id: ID!
+	email: String!
+	membername: String!
+}
+
+type Image {
+	filename: String!
+	url: String!
+}
+
+type MemberPublicProfile {
+	id: ID!
+	membername: String!
+	firstname: String
+	lastname: String
+	profilePictureUrl: String
+	coverImageUrl: String
+	aboutme: String
+	profileActivity: ProfileActivity!
+}
+
+type MemberPrivateProfile {
+	id: ID!
+	membername: String!
+	firstname: String
+	lastname: String
+	birthdate: Date
+	profilePictureUrl: String
+	coverImageUrl: String
+	aboutme: String
+	languages: [String!]
+	places: [String!]
+	website: String
+	background: [String!]
+	interests: [String!]
+	knowtypes: [String!]
+	profileActivity: ProfileActivity!
+	isFirstLogin: Boolean!
+}
+
+type ProfileActivity {
+	receivedSparks: [SparkStat!]!
+	donatedSparks: [SparkStat!]!
+	receivedIgnitesSparks: [SparkStat!]!
+	donatedIgnitesSparks: [SparkStat!]!
+}
+
+type SparkStat {
+	spark: Spark!
+	count: Int!
+}
+
+input MemberProfileUpdateInput {
+	firstname: String
+	lastname: String
+	birthdate: Date
+	profilePictureUrl: String
+	coverImageUrl: String
+	aboutme: String
+	languages: [String!]
+	places: [String!]
+	website: String
+	background: [String!]
+	interests: [String!]
+	knowtypes: [String!]
+	isFirstLogin: Boolean
+}
+
+type IgniteGroup {
+	id: String!
+	children: [IgniteGroup!]
+	ignites: [Ignite!]
+}
+
+type Ignite {
+	id: String!
+	usageCount: Int!
+}
+
+type SparkIgnite {
+	igniteId: String!
+	igniteGroupId: String!
+	memberId: ID!
+	member: MemberPublicProfile!
+}
+
+type Invitation {
+	memberId: String!
+	invitationId: String!
+	createdDatetime: DateTime!
+}
+
+scalar Date
+scalar DateTime

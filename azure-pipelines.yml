@@ -1,0 +1,109 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+# Branch name
+trigger:
+  - develop
+
+# vm image and tools
+pool:
+  vmImage: "ubuntu-latest"
+strategy:
+  matrix:
+    node_12_x:
+      node_version: 12.x
+
+variables:
+  imageName: "devhunome/demo-hunome-2020"
+  dockerHub: "3332eae9-e9b4-4178-8b11-45580ac38804"
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
+#Build
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+    displayName: "Node Tools"
+
+  - task: Cache@2
+    inputs:
+      key: yarn | $(Agent.OS) | yarn.lock
+      path: $(YARN_CACHE_FOLDER)
+      restoreKeys: |
+        yarn | $(Agent.OS)
+        yarn
+    displayName: yarn install
+
+  - script: yarn --frozen-lockfile --silent
+    condition: ne(variables['CacheRestored'], 'true')
+
+  # Running the unit test for client
+  - script: |
+      cd packages/client
+      CI=true yarn test --watchAll=false --coverage
+    displayName: "Client Test"
+
+  # Running the unit test for server
+  - script: |
+      cd packages/server
+      yarn gen
+      CI=true yarn test --watchAll=false --coverage
+    displayName: "Server test"
+
+  # Publish test results
+  - task: PublishTestResults@1
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: "packages/client/coverage/*.xml"
+      mergeTestResults: false # Optional
+      testRunTitle: # Optional
+      publishRunAttachments: true # Optional
+  - task: PublishTestResults@2
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: "packages/server/coverage/*.xml"
+      mergeTestResults: false # Optional
+      testRunTitle: # Optional
+      publishRunAttachments: true # Optional
+
+  # Use ReportGenerator Extension to merge two coverage results into one
+  - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
+    displayName: ReportGenerator
+    inputs:
+      reports: "packages/server/coverage/cobertura-coverage.xml;packages/client/coverage/cobertura-coverage.xml"
+      targetdir: "packages/coverage"
+      reporttypes: "HtmlInline_AzurePipelines;Cobertura"
+
+  # Publish code coverage results
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: "packages/coverage/*.xml"
+      reportDirectory: "packages/coverage"
+
+  # Download and store the secured file (environment settings)
+  - task: DownloadSecureFile@1
+    name: envSettings
+    displayName: "Download Env Settings"
+    inputs:
+      secureFile: "Dockerfile"
+
+  - script: |
+      echo Storing $(envSettings.secureFilePath) to the proper directory...
+      sudo chown vsts:docker $(envSettings.secureFilePath)
+      sudo chmod a+r $(envSettings.secureFilePath)
+      sudo mv -f $(envSettings.secureFilePath) . #packages/server
+      sudo ls . -alt
+
+  # Build and push
+  - task: Docker@2
+    displayName: Build and Push
+    inputs:
+      command: buildAndPush
+      containerRegistry: $(dockerHub)
+      repository: $(imageName)
+      Dockerfile: ./Dockerfile
+      tags: |
+        $(build.buildNumber)

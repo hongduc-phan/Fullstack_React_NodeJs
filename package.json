@@ -1,0 +1,27 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "client": "lerna exec --scope client -- yarn start",
+    "clean": "lerna clean",
+    "build": "lerna run build --stream",
+    "start": "lerna exec --scope server -- yarn start:docker",
+    "prestart": "yarn build",
+    "start:dev-server": "lerna exec --scope server -- yarn start",
+    "dev": "concurrently \"yarn run start:dev-server\" \"yarn run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "lerna": "^3.22.1"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/jest"
+    ]
+  }
+}

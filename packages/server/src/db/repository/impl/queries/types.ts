@@ -1,0 +1,7 @@
+export const SPARK_NODE = 'Spark'
+export const SPARKMAP_NODE = 'SparkMap'
+export const MEMBER_NODE = 'Member'
+export const IGNITE_NODE = 'Ignite'
+export const INVITATION_NODE = 'Invitation'
+export const EMAIL_VERIFICATION_NODE = 'EmailVerification'
+export const RESET_PASSWORD_REQUEST_NODE = 'ResetPasswordRequest'
